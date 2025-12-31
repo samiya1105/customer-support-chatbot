@@ -1,0 +1,340 @@
+{
+  "intents": [
+    {
+      "tag": "store_timings",
+      "patterns": [
+        "timing",
+        "store hours",
+        "business hours",
+        "opening time",
+        "closing time",
+        "hours",
+        "open"
+      ],
+      "responses": [
+        "We are open Monday to Friday from 9:00 AM to 6:00 PM.",
+        "Our business hours are 9 AM to 6 PM on weekdays."
+      ]
+    },
+    {
+      "tag": "location",
+      "patterns": [
+        "address",
+        "location",
+        "office",
+        "where is your office",
+        "where"
+      ],
+      "responses": [
+        "Our office is located at 123 Tech Park, Silicon Valley."
+      ]
+    },
+    {
+      "tag": "contact",
+      "patterns": [
+        "contact",
+        "phone",
+        "call",
+        "email",
+        "support"
+      ],
+      "responses": [
+        "You can call us at +1-800-123-4567 or email support@example.com.",
+        "You can email us at contact@example.com."
+      ]
+    },
+    {
+      "tag": "order_status",
+      "patterns": [
+        "order status",
+        "order",
+        "tracking",
+        "check order",
+        "where is my order"
+      ],
+      "responses": [
+        "You can track your order using the tracking link sent to your email."
+      ]
+    },
+    {
+      "tag": "return_policy",
+      "patterns": [
+        "return policy",
+        "return",
+        "refund",
+        "exchange"
+      ],
+      "responses": [
+        "Products can be returned within 7 days of delivery if unused and in original packaging."
+      ]
+    },
+    {
+      "tag": "payment",
+      "patterns": [
+        "payment methods",
+        "payment",
+        "credit card",
+        "paypal"
+      ],
+      "responses": [
+        "We accept credit cards, debit cards, and PayPal."
+      ]
+    },
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hi",
+        "hello",
+        "hey"
+      ],
+      "responses": [
+        "Hello! How can I assist you today?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "bye",
+        "goodbye",
+        "see you"
+      ],
+      "responses": [
+        "Thank you for contacting us. Have a great day!"
+      ]
+    },
+    {
+      "tag": "create_account",
+      "patterns": [
+        "how do I create an account",
+        "sign up",
+        "register"
+      ],
+      "responses": [
+        "You can create an account by clicking on the Sign Up button and filling in your details."
+      ]
+    },
+    {
+      "tag": "forgot_password",
+      "patterns": [
+        "forgot password",
+        "reset password",
+        "change password"
+      ],
+      "responses": [
+        "Click on Forgot Password on the login page to reset your password."
+      ]
+    },
+    {
+      "tag": "update_profile",
+      "patterns": [
+        "update profile",
+        "edit profile",
+        "my account"
+      ],
+      "responses": [
+        "You can update your profile information from the My Account section."
+      ]
+    },
+    {
+      "tag": "delivery_time",
+      "patterns": [
+        "delivery time",
+        "how long for delivery",
+        "shipping time"
+      ],
+      "responses": [
+        "Orders are usually delivered within 3 - 5 business days."
+      ]
+    },
+    {
+      "tag": "shipping_charges",
+      "patterns": [
+        "shipping charges",
+        "delivery cost",
+        "shipping fee"
+      ],
+      "responses": [
+        "Shipping is free for orders above Rs. 999, otherwise standard charges apply."
+      ]
+    },
+    {
+      "tag": "weekend_delivery",
+      "patterns": [
+        "do you deliver on weekends",
+        "weekend delivery"
+      ],
+      "responses": [
+        "Yes, deliveries may happen on weekends depending on courier availability."
+      ]
+    },
+    {
+      "tag": "cancel_order",
+      "patterns": [
+        "cancel order",
+        "cancel my order"
+      ],
+      "responses": [
+        "You can cancel your order from the My Orders section before it is shipped."
+      ]
+    },
+    {
+      "tag": "cancellation_policy",
+      "patterns": [
+        "cancellation policy",
+        "can i cancel"
+      ],
+      "responses": [
+        "Orders can be cancelled within 24 hours of placing the order."
+      ]
+    },
+    {
+      "tag": "product_availability",
+      "patterns": [
+        "product availability",
+        "is this in stock",
+        "stock"
+      ],
+      "responses": [
+        "Product availability is shown on the product page."
+      ]
+    },
+    {
+      "tag": "warranty",
+      "patterns": [
+        "warranty details",
+        "warranty",
+        "guarantee"
+      ],
+      "responses": [
+        "Warranty information is provided in the product description section."
+      ]
+    },
+    {
+      "tag": "current_offers",
+      "patterns": [
+        "current offers",
+        "offers",
+        "sale"
+      ],
+      "responses": [
+        "You can check ongoing offers on the Offers page of our website."
+      ]
+    },
+    {
+      "tag": "discount_coupon",
+      "patterns": [
+        "discount coupon",
+        "coupon code",
+        "promo code"
+      ],
+      "responses": [
+        "Apply discount coupons at checkout to avail offers."
+      ]
+    },
+    {
+      "tag": "support_hours",
+      "patterns": [
+        "customer support",
+        "support timing"
+      ],
+      "responses": [
+        "Our customer support team is available Monday to Friday, 9 AM to 6 PM."
+      ]
+    },
+    {
+      "tag": "raise_complaint",
+      "patterns": [
+        "raise a complaint",
+        "complaint",
+        "issue"
+      ],
+      "responses": [
+        "You can raise a complaint by contacting our support team via email or phone."
+      ]
+    },
+    {
+      "tag": "data_safety",
+      "patterns": [
+        "is my data safe",
+        "security",
+        "secure"
+      ],
+      "responses": [
+        "Yes, we use secure systems to protect your personal information."
+      ]
+    },
+    {
+      "tag": "privacy_policy",
+      "patterns": [
+        "privacy policy",
+        "privacy"
+      ],
+      "responses": [
+        "You can view our privacy policy on the website for detailed information."
+      ]
+    },
+    {
+      "tag": "website_issues",
+      "patterns": [
+        "website not working",
+        "website down",
+        "page error"
+      ],
+      "responses": [
+        "Please try refreshing the page or clearing your browser cache."
+      ]
+    },
+    {
+      "tag": "app_issues",
+      "patterns": [
+        "app crashing",
+        "app not working"
+      ],
+      "responses": [
+        "Make sure you are using the latest version of the app."
+      ]
+    },
+    {
+      "tag": "feedback",
+      "patterns": [
+        "give feedback",
+        "feedback"
+      ],
+      "responses": [
+        "You can share your feedback through the Feedback section on our website."
+      ]
+    },
+    {
+      "tag": "rate_service",
+      "patterns": [
+        "rate service",
+        "rating"
+      ],
+      "responses": [
+        "We value your feedback—please rate our service after your interaction."
+      ]
+    },
+    {
+      "tag": "mobile_app",
+      "patterns": [
+        "do you have a mobile app",
+        "mobile app",
+        "android",
+        "ios"
+      ],
+      "responses": [
+        "Yes, our mobile app is available on Android and iOS."
+      ]
+    },
+    {
+      "tag": "languages",
+      "patterns": [
+        "languages supported",
+        "languages"
+      ],
+      "responses": [
+        "Currently, we support English."
+      ]
+    }
+  ]
+}

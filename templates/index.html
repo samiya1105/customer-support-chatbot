@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support Bot</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap');
+
+        /* Base Styles - Mobile First (< 480px) */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            /* Fallback */
+            height: 100dvh;
+            /* Dynamic view height for mobile browsers */
+            background-color: #f0f2f5;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            /* Prevent body scroll */
+        }
+
+        .chat-window {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+            /* Full screen on mobile */
+            box-shadow: none;
+            border: none;
+        }
+
+        /* Header */
+        .header {
+            background-color: #0078d4;
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .avatar-circle {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .header-info h2 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .status {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #4cd964;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Message Area */
+        .message-area {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-image: radial-gradient(#e1e1e1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .message {
+            max-width: 85%;
+            /* Wider on mobile */
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            word-wrap: break-word;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background-color: #ffffff;
+            color: #333;
+            border: 1px solid #eee;
+            border-top-left-radius: 2px;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background-color: #0078d4;
+            color: white;
+            border-top-right-radius: 2px;
+        }
+
+        .message.user .timestamp {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .timestamp {
+            font-size: 0.65rem;
+            color: #999;
+            display: block;
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        /* Input Area */
+        .input-area {
+            background-color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-top: 1px solid #eee;
+            flex-shrink: 0;
+        }
+
+        .input-box {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #f8f9fa;
+        }
+
+        .input-box:focus {
+            border-color: #0078d4;
+            background: #fff;
+        }
+
+        .send-btn {
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .send-btn:hover {
+            background-color: #0063b1;
+        }
+
+        .send-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Small Screen / Large Phone (Min 480px) */
+        @media (min-width: 480px) {
+            .chat-window {
+                width: 100%;
+                max-width: 420px;
+                /* Restrain width */
+                height: 90vh;
+                /* Not full height */
+                border-radius: 12px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+                border: 1px solid #ddd;
+            }
+
+            .header {
+                padding: 15px 20px;
+                gap: 15px;
+            }
+
+            .avatar-circle {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .header-info h2 {
+                font-size: 1.1rem;
+            }
+
+            .message {
+                max-width: 75%;
+                padding: 12px 16px;
+            }
+
+            .input-area {
+                padding: 15px;
+                gap: 10px;
+            }
+
+            .input-box {
+                padding: 12px 15px;
+            }
+
+            .send-btn {
+                width: 42px;
+                height: 42px;
+            }
+
+            .send-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        /* Tablets (Min 768px) */
+        @media (min-width: 768px) {
+            .chat-window {
+                max-width: 500px;
+                height: 85vh;
+            }
+
+            /* Increase font slightly for larger readability if desired, 
+               but usually standard size is fine. 
+               We can adjust margins. */
+
+            .message-area {
+                padding: 20px;
+            }
+        }
+
+        /* Laptops/Desktops (Min 1024px) */
+        @media (min-width: 1024px) {
+            .chat-window {
+                /* On very large screens, we might want to keep it compact 
+                   like a phone app, or expand it. 
+                   Keeping it roughly phone/tablet sized is usually best for chat bots.
+                   Let's ensure it doesn't get lost. */
+                max-width: 450px;
+                height: 80vh;
+                max-height: 800px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-window">
+        <!-- Header -->
+        <div class="header">
+            <div class="avatar-circle">🤖</div>
+            <div class="header-info">
+                <h2>Customer Support Bot</h2>
+                <div class="status"><span class="status-dot"></span> Online</div>
+            </div>
+        </div>
+
+        <!-- Message Area -->
+        <div class="message-area" id="messageArea">
+            <div class="message bot">
+                Hello! 👋 I'm your Customer Support assistant.<br>
+                How can I help you today?
+                <span class="timestamp">Just now</span>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+            <input type="text" class="input-box" id="userInput" placeholder="Type your message..." autocomplete="off">
+            <button class="send-btn" onclick="sendMessage()">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById("userInput");
+        const messageArea = document.getElementById("messageArea");
+
+        input.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        function getTimestamp() {
+            const now = new Date();
+            return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        async function sendMessage() {
+            const text = input.value.trim();
+            if (!text) return;
+
+            // Add User Message
+            addMessage(text, 'user');
+            input.value = "";
+
+            try {
+                const response = await fetch('/get_response', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+                const data = await response.json();
+
+                // Add Bot Message
+                addMessage(data.response, 'bot');
+
+            } catch (error) {
+                addMessage("Error connecting to server.", 'bot');
+            }
+        }
+
+        function addMessage(text, sender) {
+            const div = document.createElement("div");
+            div.classList.add("message", sender);
+
+            // Allow basic HTML for line breaks
+            div.innerHTML = text + `<span class="timestamp">${getTimestamp()}</span>`;
+
+            messageArea.appendChild(div);
+            messageArea.scrollTop = messageArea.scrollHeight;
+        }
+    </script>
+</body>
+
+</html>
